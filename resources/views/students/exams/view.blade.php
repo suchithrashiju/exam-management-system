@@ -28,7 +28,7 @@
 
         <hr>
 
-        <form id="online-exam-form" method="POST" action="{{ route('student.submitExam', $exam->id) }}">
+        <form id="online-exam-form" method="POST" action="{{ route('student.submitExam', $exam->id) }}" class="d-none">
             @csrf
             <input type="hidden" name="exam_id" value="{{ $exam->id }}" readonly>
             <input id="start_time" type="hidden" name="start_time" value="">
@@ -81,6 +81,7 @@
             document.getElementById('start_time').value = new Date().toISOString();
             $('#btnStart').hide();
             $('#btnTestSubmit').removeClass('d-none');
+            $('#online-exam-form').removeClass('d-none');
 
             function updateTimer() {
                 var now = Date.now();

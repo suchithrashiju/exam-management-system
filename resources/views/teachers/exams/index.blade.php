@@ -3,11 +3,6 @@
 @section('content')
     <div class="container">
         <h1>Exams</h1>
-        @if (session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
         <div class="text-right">
             <a href="{{ route('exams.create') }}" class="btn btn-primary">Add Exam</a>
         </div>

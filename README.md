@@ -1,66 +1,173 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Exam management App
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+The Exam Management App is a web-based platform designed to facilitate the management and conduct of exams for educational institutions. It provides functionalities for both teachers and students, allowing teachers to create and manage exams, and students to register for exams and take them within specified time frames.
 
-## About Laravel
+## Table of Contents
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+-   [Installation](#installation)
+-   [Usage](#usage)
+-   [Configuration](#configuration)
+-   [Contributing](#contributing)
+-   [License](#license)
+-   [Credits](#credits)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Installation
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Prerequisites
 
-## Learning Laravel
+-   PHP 8.1 or higher
+-   Composer
+-   MySQL
+-   Node.js and npm
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Steps
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/suchithrashiju/exam-management-system.git
+    cd exam-management-system
+    ```
+2.  **Install PHP dependencies:**
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+    ```bash
+    composer install
+    ```
 
-## Laravel Sponsors
+3.  **Install JavaScript dependencies:**
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+    ```bash
+    npm install
+    npm run dev
+    npm run build
+    ```
 
-### Premium Partners
+4.  **Copy the .env.example file to .env:**
+    cp .env.example .env
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+5.  **Set up your .env file:**
+    Update the .env file with your database credentials and other necessary configuration.
+
+    ```bash
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=your_database_name
+    DB_USERNAME=your_database_username
+    DB_PASSWORD=your_database_password
+
+    ```
+
+6.  **Generate an application key:**
+
+```bash
+ php artisan key:generate
+```
+
+7.  **Run database migrations:**
+
+```bash
+ php artisan migrate
+```
+
+8.  **Seed the database:**
+
+Seed the database to include default users with roles assigned as both teachers and students, along with exam and question data for testing purposes.
+
+```bash
+ php artisan db:seed
+
+```
+
+9.  **Start the development server:**
+
+```bash
+php artisan serve
+```
+
+## Features
+
+This app has two types of user roles: Teacher and Student.
+
+### Teacher
+
+    Teachers are responsible for creating and managing exams.
+    They have the capability to add questions to exams, set exam durations and pass marks, and publish or archive exams.
+    Teachers can also view exam results.
+
+    Use the following teacher credentials to log in:
+            Email: john.doe@example.com or jane.smith@example.com
+            Password: password123
+
+### Student
+
+    Students can register for exams and take them within specified time frames.
+    They are required to answer all questions in the exam.
+    After completing the exam, students can view their pass/fail status and marks.
+    Students can log in to the application to see the exams they have attended and their corresponding marks.
+
+    Use the following student credentials to log in:
+            Email: alice.johnson@example.com or bob.brown@example.com
+            Password: password123
+
+### Teacher Role Capabilities
+
+    Create Exams: Teachers can create exams by providing exam names.
+    Add Questions: For each exam, teachers can add questions along with four choices for answers. Each question carries one mark.
+    Set Exam Duration and Pass Marks: Teachers can set the duration of the exam and specify the pass marks.
+    Publish and Archive Exams: Teachers can publish exams for students to register and attend. They also have the option to archive exams.
+    View Exam Results: Teachers can view the results of exams, including the marks obtained by students.
+
+### Student Role Capabilities
+
+    View Available Exams: Students can view details of the latest published exams on the website.
+    Register for Exams: Students can register for exams they wish to attend.
+    Take Exams: Students can attend exams within the predetermined time frame set by the teacher. The system automatically saves exam results once the timer ends.
+    View Pass/Fail Status: After completing the exam, students can view their pass/fail status and marks.
+    View Attended Exams and Marks: Students can log in to the application to see the exams they have attended and their corresponding marks.
+
+### Technologies Used
+
+    Frontend: HTML, CSS, JavaScript,Bootstrap,Jquery
+    Backend: Laravel Framework 11
+    Database: MySQL
+
+### Configuration
+
+-   Environment Variables
+
+-   APP_NAME: The name of your application.
+-   DB_CONNECTION: The database connection type (e.g., mysql).
+-   DB_HOST: The database host.
+-   DB_PORT: The database port.
+-   DB_DATABASE: The database name.
+-   DB_USERNAME: The database username.
+-   DB_PASSWORD: The database password.
+
+### Customizing the Application
+
+Modify the configuration files in the config directory as needed. This includes database settings, caching, and other application-specific settings.
 
 ## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## How to Contribute
 
-## Code of Conduct
+    Fork the repository.
+    Create a new branch (git checkout -b feature/your-feature-name).
+    Make your changes.
+    Commit your changes (git commit -m 'Add some feature').
+    Push to the branch (git push origin feature/your-feature-name).
+    Open a pull request.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Coding Standards
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+    Follow PSR-12 coding standards.
+    Ensure all new features have corresponding tests.
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+### Credits
+
+    Author: Suchithra.S
+    Contributors: List of contributors

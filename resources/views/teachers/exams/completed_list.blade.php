@@ -4,11 +4,6 @@
     <div class="container">
         <h1>Exam History</h1>
         <br>
-        @if (session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
         <table class="table mt-4">
             <thead>
                 <tr>

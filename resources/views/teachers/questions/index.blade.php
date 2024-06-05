@@ -3,11 +3,7 @@
 @section('content')
     <div class="container">
         <h1>Manage Exam-Questions </h1>
-        @if (session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
+
         <div class="text-right">
             <a href="{{ route('exams.index') }}" class="btn btn-primary">Exam List</a>
             <a href="{{ route('exams.questions.create', $exam->id) }}" class="btn btn-primary">Add Question</a>

@@ -14,7 +14,8 @@ class ExamController extends Controller
      */
     public function index()
     {
-        $exams = Exam::all();
+        $teacher_id = auth()->id();
+        $exams = Exam::where('teacher_id',$teacher_id)->get();
         return view('teachers.exams.index', compact('exams'));
     }
 
@@ -164,16 +165,21 @@ class ExamController extends Controller
         return redirect()->back();
     }
 
-   /**
-    * The function `completedExams` retrieves all user exams and passes them to a view for display in a
-    * completed exams list.
-    *
-    * @return The `completedExams` function is returning a view called 'teachers.exams.completed_list'
-    * with the data from the `userExams` variable passed to the view using the `compact` function.
-    */
+
+    /**
+     * The function `completedExams` retrieves completed exams associated with a specific teacher and
+     * passes them to a view for display.
+     *
+     * @return A view named 'teachers.exams.completed_list' is being returned with the data from the
+     * completed exams that belong to the authenticated teacher. The data includes the user exams
+     * joined with the exams where the teacher_id matches the authenticated teacher's id.
+     */
     public function completedExams()
     {
-        $userExams = UserExam::all();
+        $teacher_id = auth()->id();
+        $userExams = UserExam::join('exams', 'user_exams.exam_id', '=', 'exams.id')
+                    ->where('exams.teacher_id', $teacher_id)
+                    ->get();
         return view('teachers.exams.completed_list', compact('userExams'));
     }
 
